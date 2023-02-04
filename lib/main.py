@@ -21,7 +21,7 @@ class BaseModel(Model):
 
 # Create subclass
 class AddressBook(BaseModel):
-    name = CharField()
+    name = CharField(unique=True)
     address = CharField()
     zipcode = IntegerField()
     primary_phone = CharField()

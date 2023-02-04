@@ -22,7 +22,7 @@ while True:
 
     # Add Entry to Address Book
     if opt == 'b':
-        # Placeholder Log
+        # Placeholder Tag
         print("Add Entry")
         # Pseudo Code
         # Add Name
@@ -51,12 +51,27 @@ while True:
         AddressBook(name=name_add, address=address_add, zipcode=zipcode_add, primary_phone=primary_phone_add, emergency_contact=emergency_contact_add).save()
     # Edit Entry in Address Book
     if opt == 'c':
+        # Placeholder Tag
         print("Edit Entry")
+        # Pseudo Code
+        selection = input('Enter the name of the entry you would like to edit: ')
+        selected = AddressBook.select().where(AddressBook.name == selection)
+
+
+
+
+        # Edit Name
+
     
     # Delete Entry in Address Book
     if opt == 'd':
+        # Placeholder Tag
         print('Delete Entry')
-
+        # Pseudo Code
+        selection = input('Enter the name of the entry you would like to edit: ')
+        selected = AddressBook..delete_instance()
+        print('Entry deleted')
+        
     run_again = input('Would you like to continue (c) or exit? (x): ').lower()
     if run_again == 'x':
         break
