@@ -23,4 +23,6 @@ while True:
     if opt == 'd':
         print('Delete Entry')
 
-    break;
+    run_again = input('Would you like to continue (c) or exit? (x): ').lower()
+    if run_again == 'x':
+        break
