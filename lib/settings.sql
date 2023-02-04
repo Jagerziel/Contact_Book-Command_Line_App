@@ -1,0 +1,1 @@
+CREATE DATABASE 'address_book';
