@@ -31,7 +31,7 @@ while True:
             name_add = input('Please enter a name: ')
         # Add address (can be blank)
         address_add = input('Please enter an address: ')
-        # Add zipcode - must be 5 characters
+        # Add zipcode - must be 5 characters, can skip if no address
         zipcode_add = input('Please enter a zip code: ')
         while len(address_add) > 0 and len(zipcode_add) != 5:
             zipcode_add = input('Please enter a valid zip code: ')
@@ -49,6 +49,7 @@ while True:
             emergency_contact_add = False
         # Add entry to Address Book
         AddressBook(name=name_add, address=address_add, zipcode=zipcode_add, primary_phone=primary_phone_add, emergency_contact=emergency_contact_add).save()
+        print('Entry added')
     # Edit Entry in Address Book
     if opt == 'c':
         # Placeholder Tag
@@ -56,12 +57,34 @@ while True:
         # Pseudo Code
         selection = input('Enter the name of the entry you would like to edit: ')
         selected = AddressBook.select().where(AddressBook.name == selection)
-
-
-
+        print(f"{selected.name}'s record selected. Update information where desired, you may press ENTER to maintain current details")
 
         # Edit Name
+        name_edit = input(f'Please enter a name (current: {selected.name}): ')
+        # Edit Address
+        address_edit = input(f'Please enter an address (current: {selected.address}): ')
+        # Edit Zip Code
+        zipcode_edit = input(f'Please enter a zip code (current: {selected.zipcode}): ')
+        while len(address_edit) > 0 and len(zipcode_edit) != 5:
+            zipcode_edit = input('Please enter a valid zip code: ')        
+        # Edit Primary Phone
+        primary_phone_edit = int(input(f'Please enter a 10-digit primary phone number (current: {selected.primary_phone}): '))
+        while len(primary_phone_edit) != 10:
+            primary_phone_edit =  int(input(f'Please enter a 10-digit primary phone number (current: {selected.primary_phone}): '))
+        # Emergency Contact
+        emergency_contact_edit = selected.emergency_contact
+        if selected.emergency_contact == True:
+            emergency_contact_edit = input(f'This entry is currently an emergency contact, would you like to remove designation? yes (y) or no (n) ').lower()
+            if emergency_contact_edit == 'y' or emergency_contact_edit == 'yes':
+                emergency_contact_edit = False
+        if selected.emergency_contact == False:
+            mergency_contact_edit = input(f'This entry is currently not an emergency contact, would you like to add designation? yes (y) or no (n) ').lower()
+            if emergency_contact_edit == 'y' or emergency_contact_edit == 'yes':
+                emergency_contact_edit = True
+        # Update Entry
+        AddressBook(name=name_edit, address=address_edit, zipcode=zipcode_edit, primary_phone=primary_phone_edit, emergency_contact=emergency_contact_add).save()
 
+        print('Entry updated')
     
     # Delete Entry in Address Book
     if opt == 'd':
@@ -69,9 +92,11 @@ while True:
         print('Delete Entry')
         # Pseudo Code
         selection = input('Enter the name of the entry you would like to edit: ')
-        selected = AddressBook..delete_instance()
+        selected = AddressBook.delete_instance()
         print('Entry deleted')
-        
+    # Ask to run again
     run_again = input('Would you like to continue (c) or exit? (x): ').lower()
+    while run_again != 'c' and run_again != 'x':
+        run_again = input('Would you like to continue (c) or exit? (x): ').lower()
     if run_again == 'x':
         break
