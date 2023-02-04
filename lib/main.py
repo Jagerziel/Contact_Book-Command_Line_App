@@ -22,7 +22,10 @@ class BaseModel(Model):
 # Create subclass
 class AddressBook(BaseModel):
     name = CharField()
-    birthday = DateField()
+    address = CharField()
+    zipcode = IntegerField()
+    primary_phone = CharField()
+    emergency_contact = BooleanField()
 
 # Create table with setup in the AddressBook class
 db.drop_tables([AddressBook])
