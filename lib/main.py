@@ -5,12 +5,12 @@ import datetime
 # Import peewee
 from peewee import *
 
-# Create database - specify db_name, user, password, host, and port
-db = PostgresqlDatabase('people', user='postgres', password='12345',
-    host='localhost', port=8000)
+from playhouse.shortcuts import dict_to_model, model_to_dict
 
-# Connect to DB
-db.connect()
+# Create database - specify db_name, user, password, host, and port
+db = PostgresqlDatabase('address_book', user='jagerziel', password='12345',
+    host='localhost', port=5432)
+
 
 # Create base model to pull from database
 class BaseModel(Model):
@@ -26,10 +26,6 @@ class AddressBook(BaseModel):
     zipcode = IntegerField()
     primary_phone = CharField()
     emergency_contact = BooleanField()
-
-# Create table with setup in the AddressBook class
-db.drop_tables([AddressBook])
-db.create_tables([AddressBook])
 
 
 

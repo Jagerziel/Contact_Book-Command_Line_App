@@ -1,5 +1,6 @@
 # Imports
 from main import AddressBook
+from playhouse.shortcuts import dict_to_model, model_to_dict
 
 # Start the app
 while True:
@@ -32,13 +33,13 @@ while True:
         # Add address (can be blank)
         address_add = input('Please enter an address: ')
         # Add zipcode - must be 5 characters, can skip if no address
-        zipcode_add = input('Please enter a zip code: ')
-        while len(address_add) > 0 and len(zipcode_add) != 5:
-            zipcode_add = input('Please enter a valid zip code: ')
+        zipcode_add = int(input('Please enter a zip code: '))
+        while len(address_add) > 0 and len(str(zipcode_add)) != 5:
+            zipcode_add = int(input('Please enter a valid zip code: '))
         # Primary Phone - must be 10 Digits
-        primary_phone_add = int(input('Please enter a 10-digit primary phone number: '))
+        primary_phone_add = str(input('Please enter a 10-digit primary phone number: '))
         while len(primary_phone_add) != 10:
-            primary_phone_add = input('Please enter a 10-digit primary phone number: ')
+            primary_phone_add = str(input('Please enter a 10-digit primary phone number: '))
         # Add emergency contact, can be skipped or needs a yes or no
         emergency_contact_add = input('Is this an emergency contact yes (y) or no (n)').lower()
         while emergency_contact_add != 'y' and emergency_contact_add != 'yes' and  emergency_contact_add != 'n' and  emergency_contact_add != 'no' and  emergency_contact_add != '':
@@ -56,21 +57,36 @@ while True:
         print("Edit Entry")
         # Pseudo Code
         selection = input('Enter the name of the entry you would like to edit: ')
-        selected = AddressBook.select().where(AddressBook.name == selection)
-        print(f"{selected.name}'s record selected. Update information where desired, you may press ENTER to maintain current details")
+        selected = ""  
+        all_entries = []
+
+        for people in AddressBook.select():
+            all_entries.append(model_to_dict(people))
+
+        # all_entries = []
+        for row in all_entries:
+            if (selection == row['name']):
+                selected = row
+
+        # NOTE: FIX CONDITIONAL
+
+
+        print(f"{selected['name']}'s record selected. Update information where desired, you may press ENTER to maintain current details")
+
+        # NOTE: FIX FROM HERE DOWN
 
         # Edit Name
         name_edit = input(f'Please enter a name (current: {selected.name}): ')
         # Edit Address
         address_edit = input(f'Please enter an address (current: {selected.address}): ')
         # Edit Zip Code
-        zipcode_edit = input(f'Please enter a zip code (current: {selected.zipcode}): ')
-        while len(address_edit) > 0 and len(zipcode_edit) != 5:
-            zipcode_edit = input('Please enter a valid zip code: ')        
+        zipcode_edit = int(input(f'Please enter a zip code (current: {selected.zipcode}): '))
+        while len(address_edit) > 0 and len(str(zipcode_edit)) != 5:
+            zipcode_edit = int(input('Please enter a valid zip code: '))        
         # Edit Primary Phone
-        primary_phone_edit = int(input(f'Please enter a 10-digit primary phone number (current: {selected.primary_phone}): '))
+        primary_phone_edit = str(input(f'Please enter a 10-digit primary phone number (current: {selected.primary_phone}): '))
         while len(primary_phone_edit) != 10:
-            primary_phone_edit =  int(input(f'Please enter a 10-digit primary phone number (current: {selected.primary_phone}): '))
+            primary_phone_edit =  str(input(f'Please enter a 10-digit primary phone number (current: {selected.primary_phone}): '))
         # Emergency Contact
         emergency_contact_edit = selected.emergency_contact
         if selected.emergency_contact == True:
