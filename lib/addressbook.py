@@ -2,6 +2,12 @@
 from main import AddressBook
 from playhouse.shortcuts import dict_to_model, model_to_dict
 
+def pull_entries():
+    all_entries = []
+    for entries in AddressBook.select():        
+        all_entries.append(model_to_dict(entries))
+    return all_entries
+
 # Start the app
 while True:
     print('Select an option: ')
@@ -58,12 +64,9 @@ while True:
         # Pseudo Code
         selection = input('Enter the name of the entry you would like to edit: ')
         selected = ""  
-        all_entries = []
+        
+        all_entries = pull_entries()
 
-        for people in AddressBook.select():
-            all_entries.append(model_to_dict(people))
-
-        # all_entries = []
         for row in all_entries:
             if (selection == row['name']):
                 selected = row
