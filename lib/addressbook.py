@@ -135,6 +135,7 @@ while True:
                 if (selection == row['name']):
                     selected = row['name']
                     break
+        # Delete Entry
         to_be_deleted = AddressBook.get(AddressBook.name == selected)
         to_be_deleted.delete_instance()
         print(f'{selected} has been removed from the Address Book')
