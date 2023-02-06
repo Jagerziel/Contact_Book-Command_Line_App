@@ -85,13 +85,13 @@ while True:
             address_edit = selected['address']
 
         # NOTE: FIX ZIP CODE EDITING
-        
+
         # Edit Zip Code
         zipcode_edit = str(input(f"Please enter a zip code (current: {selected['zipcode']}): "))
-        while (len(address_edit) > 0 or len(selected['address']) > 0) and len(str(selected['zipcode'])) != 5:
-            zipcode_edit = str(input("Please enter a valid zip code: ")) 
-        if (len(zipcode_edit) == 0):
+        if len(zipcode_edit) == 0:
             zipcode_edit = selected['zipcode']
+        while (len(address_edit) > 0 or len(selected['address']) > 0) and len(zipcode_edit) != 5:
+            zipcode_edit = str(input("Please enter a valid zip code: ")) 
         # Edit Primary Phone
         primary_phone_edit = str(input(f"Please enter a 10-digit primary phone number (current: {selected['primary_phone']}): "))
         while len(str(primary_phone_edit)) != 10 and len(str(primary_phone_edit)) == 0:
