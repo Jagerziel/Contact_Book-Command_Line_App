@@ -6,7 +6,7 @@ This program provides an easy simple way to store contact information utilizing 
 
 ## Setting Up the Program
 
-### 1) Starting Out!
+### 1) Starting Out
 
 Run the virtual Environment
 ```
@@ -25,10 +25,13 @@ If you are running the program for the first time or you would like to erase all
 lib/seed.py
 ```
 
-### 3) Run the Program!
+### 3) Install dependencies and Run the Program
 
 In the virtual environment, type the following:
 ```
+pip install peewee
+pip install psycopg2-binary 
+pip install autopep8 
 python3 lib/addressbook.py
 ```
 
