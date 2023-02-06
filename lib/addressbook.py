@@ -20,7 +20,7 @@ while True:
 
     # See Address Book
     if opt == 'a':
-        print("See Address Book")
+        print("Address Book")
         all_entries = pull_entries()
         print(f"{'Name' : <10} {'Address' : ^30} {'Zipcode' : ^8} {'Phone Number' : ^12} {'Emergency' : ^10}")
         for row in all_entries:
