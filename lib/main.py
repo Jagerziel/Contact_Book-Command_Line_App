@@ -23,7 +23,7 @@ class BaseModel(Model):
 class AddressBook(BaseModel):
     name = CharField(unique=True)
     address = CharField()
-    zipcode = IntegerField()
+    zipcode = CharField()
     primary_phone = CharField()
     emergency_contact = BooleanField()
 

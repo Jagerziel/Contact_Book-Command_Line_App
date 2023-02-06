@@ -37,9 +37,9 @@ while True:
         # Add address (can be blank)
         address_add = input('Please enter an address: ')
         # Add zipcode - must be 5 characters, can skip if no address
-        zipcode_add = int(input('Please enter a zip code: '))
-        while len(address_add) > 0 and len(str(zipcode_add)) != 5:
-            zipcode_add = int(input('Please enter a valid zip code: '))
+        zipcode_add = str(input('Please enter a zip code: '))
+        while len(address_add) > 0 and len(zipcode_add) != 5:
+            zipcode_add = str(input('Please enter a valid zip code: '))
         # Primary Phone - must be 10 Digits
         primary_phone_add = str(input('Please enter a 10-digit primary phone number: '))
         while len(primary_phone_add) != 10:
@@ -80,18 +80,16 @@ while True:
         if len(address_edit) == 0:
             address_edit = selected['address']
         # Edit Zip Code
-        zipcode_edit = input(f"Please enter a zip code (current: {selected['zipcode']}): ")
+        zipcode_edit = str(input(f"Please enter a zip code (current: {selected['zipcode']}): "))
         while (len(address_edit) > 0 or len(selected['address']) > 0) and len(str(selected['zipcode'])) != 5:
-            zipcode_edit = input("Please enter a valid zip code: ")  
-        if (len(zipcode_edit) > 0):
-            zipcode_edit = int(zipcode_edit)    
-        else:
+            zipcode_edit = str(input("Please enter a valid zip code: ")) 
+        if (len(zipcode_edit) == 0):
             zipcode_edit = selected['zipcode']
         # Edit Primary Phone
         primary_phone_edit = str(input(f"Please enter a 10-digit primary phone number (current: {selected['primary_phone']}): "))
         while len(str(primary_phone_edit)) != 10 and len(str(primary_phone_edit)) == 0:
             primary_phone_edit = str(input(f"Please enter a 10-digit primary phone number (current: {selected['primary_phone']}): "))
-        if len(primary_phone_edit) != 0:
+        if len(primary_phone_edit) == 0:
             primary_phone_edit = selected['primary_phone']
         # Emergency Contact
         emergency_contact_edit = selected['emergency_contact']
@@ -109,6 +107,7 @@ while True:
         selected['zipcode'] = zipcode_edit
         selected['primary_phone'] = primary_phone_edit
         selected['emergency_contact'] = emergency_contact_edit
+        print(selected)
         # Save updated information
         dict_to_model(AddressBook, selected).save()
 
@@ -129,7 +128,7 @@ while True:
                     break
         to_be_deleted = AddressBook.get(AddressBook.name == selected)
         to_be_deleted.delete_instance()
-        print('Entry deleted')
+        print(f'{selected} has been removed from the Address Book')
     # Ask to run again
     run_again = input('Would you like to continue (c) or exit? (x): ').lower()
     while run_again != 'c' and run_again != 'x':
