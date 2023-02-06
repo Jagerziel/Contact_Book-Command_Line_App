@@ -83,6 +83,9 @@ while True:
         address_edit = input(f"Please enter an address (current: {selected['address']}): ")
         if len(address_edit) == 0:
             address_edit = selected['address']
+
+        # NOTE: FIX ZIP CODE EDITING
+        
         # Edit Zip Code
         zipcode_edit = str(input(f"Please enter a zip code (current: {selected['zipcode']}): "))
         while (len(address_edit) > 0 or len(selected['address']) > 0) and len(str(selected['zipcode'])) != 5:
