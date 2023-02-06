@@ -23,9 +23,18 @@ while True:
         # Placeholder Log
         print("See Address Book")
         # Pseudo Code
-        book = AddressBook.select()
-        for entry in book:
-            print(AddressBook.select())
+        # book = AddressBook.select()
+        # for entry in book:
+        #     print(AddressBook.select())
+        all_entries = pull_entries()
+        print(f"{'Name' : <10} {'Address' : ^30} {'Zipcode' : ^8} {'Phone Number' : ^12} {'Emergency' : ^10}")
+        for row in all_entries:
+            emergency_contact_display = ""
+            if row['emergency_contact'] == 0:
+                emergency_contact_display = 'No'
+            else:
+                emergency_contact_display = 'Yes'
+            print(f"{row['name'] : <10} {row['address'] : ^30} {row['zipcode'] : ^8} {row['primary_phone'] : ^12} {emergency_contact_display : ^10}")
 
     # Add Entry to Address Book
     if opt == 'b':
