@@ -94,7 +94,7 @@ while True:
             zipcode_edit = str(input("Please enter a valid zip code: ")) 
         # Edit Primary Phone
         primary_phone_edit = str(input(f"Please enter a 10-digit primary phone number (current: {selected['primary_phone']}): "))
-        while len(str(primary_phone_edit)) != 10 and len(str(primary_phone_edit)) == 0:
+        while len(str(primary_phone_edit)) != 10 and len(str(primary_phone_edit)) != 0:
             primary_phone_edit = str(input(f"Please enter a 10-digit primary phone number (current: {selected['primary_phone']}): "))
         if len(primary_phone_edit) == 0:
             primary_phone_edit = selected['primary_phone']
