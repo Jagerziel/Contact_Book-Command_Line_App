@@ -62,17 +62,16 @@ while True:
         # Placeholder Tag
         print("Edit Entry")
         # Pseudo Code
-        selection = input('Enter the name of the entry you would like to edit: ')
         selected = ""  
-        
+        # Pull all entries into variable
         all_entries = pull_entries()
-
-        for row in all_entries:
-            if (selection == row['name']):
-                selected = row
-
-        # NOTE: FIX CONDITIONAL
-
+        # Iterate through all entries selecting the name (names must be unique)
+        while selected == "":
+            selection = input('Enter the name of the entry you would like to edit: ')
+            for row in all_entries:
+                if (selection == row['name']):
+                    selected = row
+                    break
 
         print(f"{selected['name']}'s record selected. Update information where desired, you may press ENTER to maintain current details")
 
