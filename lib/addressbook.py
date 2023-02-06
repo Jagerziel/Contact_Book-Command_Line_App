@@ -20,12 +20,7 @@ while True:
 
     # See Address Book
     if opt == 'a':
-        # Placeholder Log
         print("See Address Book")
-        # Pseudo Code
-        # book = AddressBook.select()
-        # for entry in book:
-        #     print(AddressBook.select())
         all_entries = pull_entries()
         print(f"{'Name' : <10} {'Address' : ^30} {'Zipcode' : ^8} {'Phone Number' : ^12} {'Emergency' : ^10}")
         for row in all_entries:

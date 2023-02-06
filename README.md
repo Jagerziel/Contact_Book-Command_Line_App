@@ -60,7 +60,29 @@ Follow the prompts and viola!
 
 **Emergency Contact**: An emergency contact designation is not required; however, if this is skipped it will default to `False`
 
+## Adding, Updating, and Deleting Contacts
 
+### Adding
+
+When adding a contact, the requirements are as per the Field Requirements noted above
+
+### Updating
+
+To start a user is prompted to provide a person's name in the Address Book.  Based on this selection, the terminal will walk you through each field to update.  If you wish to maintain the current information, simply press `ENTER` to skip the update on that field.  
+
+*Note: If a user edits an address, they will be required to enter a zip code as well*
+
+### Deleting
+
+A user is prompted to provide the person's name for the entry they wish to delete.  
+
+*Note: Since all names in the address book must be unique, the entry is case-sensitive*
+
+## Future Features
+
+- Add delete functionality for individual fields (for example, currently if an address exists you cannot remove it - only replace it)
+- Include additional fields such as a second phone field, email address, website, etc.
+- Provide user ability to select/control fields
 
 
 
