@@ -25,14 +25,13 @@ If you are running the program for the first time or you would like to erase all
 lib/seed.py
 ```
 
-### 3) Install dependencies and Run the Program
+### 3) Install Dependencies
 
 In the virtual environment, type the following:
 ```
 pip install peewee
 pip install psycopg2-binary 
 pip install autopep8 
-python3 lib/addressbook.py
 ```
 
 ## Running the Program
@@ -44,7 +43,7 @@ The program allows for 4 basic commands:
 3) Edit an entry
 4) Delete an entry
 
-To get started, run the program in the virtual environment (step 3 above) by typing:
+To get started, run the program in the virtual environment by typing:
 ```
 python3 lib/addressbook.py
 ```
